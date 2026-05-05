@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>What I Learned in My First Cybersecurity Internship</title>
+  <meta name="description" content="A CS student shares lessons from their first cybersecurity internship — tools, challenges, and advice for students exploring security careers.">
+  <meta name="keywords" content="cybersecurity internship experience, student cybersecurity, VAPT internship, cybersecurity for students, first security job">
+  <link rel="canonical" href="blog-cybersecurity-learning-path.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>*</text></svg>">
+</head>
+<body>
+  <canvas id="space-bg"></canvas>
+  <div class="cursor-dot"></div><div class="cursor-ring"></div>
+  <div class="page-wrapper">
+  <nav class="navbar"><a href="index.html" class="nav-logo">&lt;PD/&gt;</a>
+    <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="blog.html" class="active">Blog</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html" class="nav-cta">Hire Me</a></li></ul>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <article class="article-container">
+    <header class="article-header reveal">
+      <p class="article-tag">Cybersecurity // Student Experience</p>
+      <h1 class="article-title">What I Learned in My First Cybersecurity Internship</h1>
+      <div class="article-meta">
+        <span>By <a href="about.html" style="color:var(--accent-1);text-decoration:none;">Pavitra Dwivedi</a></span>
+        <span>May 4, 2026</span>
+        <span>10 min read</span>
+      </div>
+    </header>
+
+    <div class="article-body reveal">
+      <p>When I first heard back from INFERA about a cybersecurity internship I was really excited and also very scared. I had studied networking played around with Nmap and done a few CTF challenges. But actually doing vulnerability assessments on real client infrastructure was a totally different thing.</p>
+
+      <p>This post is my story of what the experience was like what skills actually mattered and the things I wish someone had told me before the first day. If you are a computer science student thinking about getting into security I hope this helps you.</p>
+
+      <h2>How I Got the Internship</h2>
+      <p>I did not have a polished resume. I was a B.Tech student at UPES, Dehradun with an understanding of Python some experience with backend development using Django and a real interest in how systems break.</p>
+
+      <p>What helped me stand out I think, was being specific. Instead of just saying "cybersecurity" as a general interest I talked about the specific tools I had used. Like Wireshark for looking at packets Burp Suite for testing websites and Splunk for looking at logs. I also mentioned OWASP Top 10 vulnerabilities by name and could talk about them in the interview.</p>
+
+      <blockquote>The main point is: you do not need to be an expert. You do need to show that you have actually used the tools not just read about them.</blockquote>
+
+      <h2>My First Week: A Reality Check</h2>
+      <p>My first task at INFERA was to help do a <strong>VAPT engagement</strong> on a client's web application. I thought I would start hacking away. Instead I spent the first two days reading documents understanding the client's system and learning the team's methods.</p>
+
+      <p>That was my first lesson: <strong>real security work is very methodical</strong>. It is not about running tools randomly. It is about understanding what you are testing why and what the impact on the business will be.</p>
+
+      <h3>The Tools That Actually Mattered</h3>
+      <p>Here are the tools I used often during the internship:</p>
+      <ul>
+        <li><strong>Burp Suite</strong> &mdash; for intercepting and changing HTTP requests. This was the most important tool for testing web applications.</li>
+        <li><strong>Nmap</strong> &mdash; for finding networks and scanning ports. This was necessary for the first part of the project.</li>
+        <li><strong>OWASP ZAP</strong> &mdash; a free alternative to Burp for automatic scanning. This was great for finding easy vulnerabilities.</li>
+        <li><strong>Wireshark</strong> &mdash; for looking at network traffic when we needed to understand what was happening at the packet level.</li>
+        <li><strong>Splunk</strong> &mdash; for looking at SIEM logs. During incident simulations this was how we connected events across different systems.</li>
+      </ul>
+
+      <h2>What I Did: Finding Real Vulnerabilities</h2>
+      <p>During the internship I helped find <strong>15+ vulnerabilities</strong> in client web infrastructure. These included:</p>
+      <ul>
+        <li>SQL injection in search parameters</li>
+        <li>Cross-site scripting in user profile fields</li>
+        <li>Broken access control that allowed privilege escalation</li>
+        <li>Insecure direct object references in API endpoints</li>
+        <li>Missing security headers</li>
+      </ul>
+      <p>Finding these was not exciting. It took hours of testing each input field each API endpoint each parameter. But when you find a real vulnerability in a production system it is a great feeling.</p>
+
+      <h2>SOC Runbooks: The Not-Exciting but Important Work</h2>
+      <p>I also made <strong>6+ SOC runbooks and incident response plans</strong>. If you do not know a runbook is basically a step-by-step guide for SOC analysts to follow when a specific alert happens.</p>
+
+      <p>Writing runbooks taught me something important: <strong>good security is not just about finding problems it is about building systems so teams can respond consistently</strong>. A well written runbook can mean the difference between containing an incident in minutes or hours.</p>
+
+      <h2>My Time at IQSec Labs</h2>
+      <p>At the same time I was also interning at <strong>IQSec Labs</strong> working on something different. Making data anonymous. I built a pipeline in Python that could make 80% of sensitive data anonymous while keeping 85% of its usefulness.</p>
+
+      <p>This might sound boring but it connected with something I care about: <strong>privacy</strong>. How do you make data useful without making it dangerous? That question led directly to my current work on <a href="blog-ai-meets-security.html" style="color:var(--accent-1);">scam detection that protects privacy</a>.</p>
+
+      <h2>Five Things I Wish I Knew Before Starting</h2>
+
+      <h3>1. Networking Basics Are Essential</h3>
+      <p>I thought I understood networking from my coursework. Then I had to actually follow a request through DNS load balancers and reverse proxies. Learn TCP/IP deeply. Understand how DNS works. Know what happens when you type a URL in a browser. All of it.</p>
+
+      <h3>2. Linux is Your Main Operating System</h3>
+      <p>Almost every security tool works better on Linux. Get comfortable with the terminal. Learn bash scripting. Understand file permissions process management and networking commands.</p>
+
+      <h3>3. Learn to Write Reports Not Just Find Bugs</h3>
+      <p>A vulnerability that is not clearly documented is a vulnerability that does not get fixed. I spent as much time writing reports as I did testing. Learn to communicate risk in business terms not just technical language.</p>
+
+      <h3>4. CTFs Are Good Practice but the Real World is Different</h3>
+      <p>CTF challenges are great for building technical skills. But real-world security involves scope constraints client communication false positives and time pressure. The soft skills matter more than I expected.</p>
+
+      <h3>5. The Community is Really Helpful</h3>
+      <p>The cybersecurity community on Twitter and LinkedIn is one of the most welcoming in tech. Follow researchers read their stories and do not be afraid to ask questions. Everyone started somewhere.</p>
+
+      <h2>What I am Doing Now</h2>
+      <p>These internship experiences shaped the direction of my current work. I am building a <a href="index.html#projects" style="color:var(--accent-1);">Privacy-Preserving Real-Time Scam Detection System</a> that uses AI to detect scams in real-time voice calls without ever storing the actual voice data. It combines everything I have learned: security architecture Python development machine learning and privacy engineering.</p>
+
+      <p>If you are a student considering cybersecurity my advice is simple: start building start breaking and do not wait until you feel "ready." You will learn more in your first week of real work than in months of tutorials.</p>
+
+      <p>Got questions? Feel free to <a href="contact.html" style="color:var(--accent-1);">reach out</a>. I am happy to share what I have learned.</p>
+
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <div class="faq-q">What background do I need for a cybersecurity internship? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>A solid understanding of networking like TCP/IP DNS and HTTP along with basic Linux terminal skills and knowing at least one security tool like Burp Suite Nmap or Wireshark will put you ahead of most people applying. Knowing Python for scripting is a big plus. You do not need certifications but they can help. CompTIA Security+ is a good starting point.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I practise cybersecurity skills as a student? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>Start with platforms like TryHackMe which is beginner-friendly and HackTheBox which is more challenging. Set up a home lab with VirtualBox and practice with intentionally vulnerable applications like DVWA and WebGoat. Participate in CTF competitions. They are free and excellent for building practical skills.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is a CS degree necessary for cybersecurity? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>Not strictly but it helps a lot. A CS degree gives you foundational knowledge in data structures operating systems and networking that is directly useful. That said many successful security professionals are self-taught. What matters most is demonstrable skill and hands-on experience.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is the difference between VAPT and penetration testing? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>Vulnerability Assessment focuses on identifying and listing vulnerabilities while Penetration Testing goes further by actually trying to exploit them. In practice VAPT combines both. You scan for vulnerabilities and then test whether they can be exploited giving a complete picture of the security posture.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-links"><a href="https://linkedin.com/in/pavitra-dwivedi" target="_blank">LinkedIn</a><a href="https://github.com/PavitraDwivedi2005" target="_blank">GitHub</a><a href="mailto:dwivedipavitr92@gmail.com">Email</a><a href="blog.html">Blog</a></div>
+    <p>2026 Pavitra Dwivedi</p>
+  </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

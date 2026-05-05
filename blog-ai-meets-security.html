@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Building a Privacy-Preserving Scam Detector: What I Learned Combining AI and Security</title>
+  <meta name="description" content="A CS student documents the process of building a real-time scam detection system that uses AI while keeping user voice data completely private.">
+  <meta name="keywords" content="privacy preserving AI, scam detection system, machine learning cybersecurity, student project AI security, federated learning privacy">
+  <link rel="canonical" href="blog-ai-meets-security.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>*</text></svg>">
+</head>
+<body>
+  <canvas id="space-bg"></canvas>
+  <div class="cursor-dot"></div><div class="cursor-ring"></div>
+  <div class="page-wrapper">
+  <nav class="navbar"><a href="index.html" class="nav-logo">&lt;PD/&gt;</a>
+    <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="blog.html" class="active">Blog</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html" class="nav-cta">Hire Me</a></li></ul>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <article class="article-container">
+    <header class="article-header reveal">
+      <p class="article-tag">AI // Privacy // Security</p>
+      <h1 class="article-title">Building a Privacy-Preserving Scam Detector: What I Learned Combining AI and Security</h1>
+      <div class="article-meta">
+        <span>By <a href="about.html" style="color:var(--accent-1);text-decoration:none;">Pavitra Dwivedi</a></span>
+        <span>May 4, 2026</span>
+        <span>12 min read</span>
+      </div>
+    </header>
+
+    <div class="article-body reveal">
+      <p>A few months ago I started working on what has become my most challenging and also my most rewarding project. The idea is simple to explain but hard to build: a system that can detect voice-based scams happening in real time using AI but without ever storing the caller's voice data. It sounds like it should not work. How do you analyse something you do not keep? That contradiction is exactly what makes this problem interesting to me.</p>
+
+      <p>This is not a tutorial. I am still figuring things out. This is more of a project diary from a student who ran into a lot of problems and learned from most of them.</p>
+
+      <h2>Why This Problem Matters</h2>
+      <p>"Digital arrest" scams are becoming really common in India. Scammers call people pretending to be government officials. They threaten arrest and pressure victims into transferring money. The calls are designed to create panic and they work surprisingly well.</p>
+
+      <p>The obvious solution would be to just record all calls and analyse them later. But that creates a huge privacy problem. You cannot protect people by watching everything they do. So the question I kept coming back to was: <strong>can you detect bad patterns in real time using only temporary data that gets thrown away right after?</strong></p>
+
+      <h2>How the System Works</h2>
+      <p>The basic idea behind the architecture is simple: <strong>process in memory extract what you need then delete the audio</strong>. Here is how it works step by step:</p>
+      <ul>
+        <li><strong>Audio capture</strong> &mdash; the system grabs small chunks of audio from the call. Just a few seconds at a time.</li>
+        <li><strong>Speech-to-text</strong> &mdash; each chunk gets transcribed locally using Vosk which is an offline speech recognition model. So no audio ever leaves the device.</li>
+        <li><strong>Feature extraction</strong> &mdash; the transcript gets checked for certain patterns. Things like urgency language impersonation phrases and known scam tactics.</li>
+        <li><strong>Risk scoring</strong> &mdash; a machine learning model looks at all the features and gives a risk score. The score is explainable meaning you can see exactly why it flagged something.</li>
+        <li><strong>Alert</strong> &mdash; if the score is too high the user gets a warning.</li>
+      </ul>
+      <p>The important part is that the raw audio never gets saved to disk. The transcript exists only in memory and gets deleted right after the features are extracted. The only thing that stays is the anonymised feature data and the risk score.</p>
+
+      <h2>Problems I Did Not Expect</h2>
+
+      <h3>Audio Capture on Windows is Painful</h3>
+      <p>This was my first real lesson in how different things are when you work with actual hardware. Capturing system audio on Windows means using something called WASAPI loopback. The documentation for it is not great and it behaves differently depending on what audio drivers you have installed.</p>
+
+      <p>I spent days trying to figure out why my audio stream was recording silence. Turns out the Nahimic drivers on my laptop were intercepting the audio output before my code could grab it. The fix was building a capture module that checks what audio setup the user has and adjusts itself. Not pretty but it works.</p>
+
+      <h3>Real-Time Processing Without Breaking the Call</h3>
+      <p>The system has to analyse audio while the call is still happening. And it cannot slow down the call or make it sound choppy. That means everything has to be non-blocking and fast enough to keep up.</p>
+
+      <p>I used Python's multithreading for this. Audio capture transcription and analysis all run at the same time in different threads. I will be honest I underestimated how complicated this would be. Thread safety shared buffers and making sure everything shuts down properly taught me more about concurrent programming than any class ever did.</p>
+
+      <h3>Making the AI Explain Itself</h3>
+      <p>A model that just says "this call is suspicious" is not helpful. People need to know why. So the risk scoring system breaks down its decision into parts: urgency language detected here impersonation pattern found there pressure tactic used at this point financial request trigger at that point.</p>
+
+      <p>This requirement changed the whole ML architecture. Instead of one big model that gives a single answer I use separate scoring for each type of scam indicator. Then they get combined with weighted aggregation. It is more work but the results actually make sense to a person reading them.</p>
+
+      <h2>What I Learned About Privacy Engineering</h2>
+      <p>Before this project privacy was just a word I would see in articles. Now it is something I think about in very concrete terms. Here are the principles that guide how I build this system.</p>
+
+      <h3>Treat All Audio Data as Sensitive</h3>
+      <p>Nothing gets written to disk unless it has been through an anonymisation process. This is influenced by what I learned at <a href="blog-cybersecurity-learning-path.html" style="color:var(--accent-1);">my internship at IQSec Labs</a> where I built data anonymisation pipelines for a living.</p>
+
+      <h3>Keep Data in Memory for Seconds Not Minutes</h3>
+      <p>Audio chunks exist in memory for just a few seconds. The moment features are extracted the raw data gets overwritten. There is no temporary file sitting around that someone could recover later.</p>
+
+      <h3>Everything Happens on the Device</h3>
+      <p>All processing happens locally. No audio no transcripts no feature data gets sent to any server anywhere. The Vosk model runs on the user's machine. The ML model runs on the user's machine. Everything stays local.</p>
+
+      <h3>The Next Step: Federated Learning</h3>
+      <p>The next thing I want to add is <strong>federated learning</strong>. The basic idea is that the ML model can get better by learning from patterns across many users but no user's data ever leaves their device. Instead only the model updates get shared and combined. Getting this right is what I am working on now and it is hard but really exciting.</p>
+
+      <h2>The Tech Stack</h2>
+      <p>For anyone curious about what I am using:</p>
+      <ul>
+        <li><strong>Python</strong> &mdash; the main language for everything</li>
+        <li><strong>Vosk</strong> &mdash; offline speech-to-text that supports English and Hindi</li>
+        <li><strong>PyAudio and sounddevice</strong> &mdash; for audio capture through WASAPI loopback</li>
+        <li><strong>scikit-learn</strong> &mdash; for the risk scoring ML model</li>
+        <li><strong>Threading</strong> &mdash; for running audio capture transcription and analysis all at the same time</li>
+        <li><strong>EMA smoothing</strong> &mdash; for making the real-time risk scores less jumpy</li>
+      </ul>
+
+      <h2>What This Project Has Taught Me</h2>
+      <p>The biggest thing I have learned is not technical. It is about thinking in systems. When you are building something that touches audio processing ML privacy and real-time computing all at once you cannot think about one part at a time. Every decision you make in one module affects everything else.</p>
+
+      <p>The second thing: <strong>constraints make you more creative</strong>. The privacy constraint of not storing voice data forced me to rethink the whole architecture. It would have been way easier to just save everything and look at it later. But the constraint pushed me toward a better design.</p>
+
+      <p>The third thing: <strong>just ship it even if it is rough</strong>. The first version of this system was bad. The audio capture did not work half the time the risk scoring was basic and there was no UI. But getting it working end-to-end even poorly gave me a foundation to improve. I am now on a version that is good enough for a copyright filing.</p>
+
+      <h2>What is Next</h2>
+      <p>The copyright filing for the architecture and detection method is in progress. After that I am focusing on:</p>
+      <ul>
+        <li>Getting federated learning to work for cross-device model improvement</li>
+        <li>Adding better Hindi language support for broader reach</li>
+        <li>Making it run well on lower-end hardware</li>
+        <li>Maybe publishing the architecture as a research paper</li>
+      </ul>
+
+      <p>If you are interested in the intersection of AI and privacy or you are working on something similar I would love to hear from you. Check out my <a href="index.html#projects" style="color:var(--accent-1);">other projects</a> or <a href="contact.html" style="color:var(--accent-1);">drop me a message</a>.</p>
+
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <div class="faq-q">How does the system detect scams without storing voice data? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>It processes audio in small chunks that only exist in memory. Each chunk gets transcribed locally then the system extracts features like urgency markers and impersonation patterns. After that the raw audio and transcript get deleted. The only things that stay are anonymised feature data and the risk score. The actual voice never touches the hard drive.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is federated learning and why does it matter here? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>Federated learning is a way of training a machine learning model across many devices without putting all the data in one place. Each device learns from its own local data and only shares model weight updates not the actual data. This means the model can improve from seeing more patterns while keeping all user data completely private on their own device.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can this work for languages other than English? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>Yes. Vosk has offline models for many languages including Hindi which is important for India where these scams are common. The feature extraction part needs to be adjusted for each language's scam patterns but the core system does not care what language is being spoken. Hindi support is something I am actively working on.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What skills do I need to build something like this? <span class="faq-arrow">+</span></div>
+          <div class="faq-a"><p>You will need solid Python skills an understanding of how audio processing works some familiarity with ML concepts like feature engineering and classification and experience with multithreaded programming. Understanding privacy engineering principles like data minimisation and transient processing also helps a lot. My advice would be to start small. Build a basic speech-to-text pipeline first then add analysis layers one at a time.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-links"><a href="https://linkedin.com/in/pavitra-dwivedi" target="_blank">LinkedIn</a><a href="https://github.com/PavitraDwivedi2005" target="_blank">GitHub</a><a href="mailto:dwivedipavitr92@gmail.com">Email</a><a href="blog.html">Blog</a></div>
+    <p>2026 Pavitra Dwivedi</p>
+  </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
