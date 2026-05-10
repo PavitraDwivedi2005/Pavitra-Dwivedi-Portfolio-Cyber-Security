@@ -1,0 +1,125 @@
+/* PavitraOS Terminal Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+#terminal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0c0c0c;
+  color: #f0f0f0;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 1.5rem;
+  overflow-y: auto;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+#terminal-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+#terminal-container::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+#terminal-output {
+  flex-grow: 1;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.terminal-line {
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 0.1s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+#terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.prompt {
+  color: #00ff66;
+  font-weight: bold;
+}
+
+#terminal-input {
+  background: transparent;
+  border: none;
+  color: #f0f0f0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  flex-grow: 1;
+  outline: none;
+  caret-color: #00ff66;
+}
+
+/* GUI Mode Toggle */
+#mode-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+#mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #00ff66;
+}
+
+/* Content Formatting */
+.terminal-accent { color: #00ff66; }
+.terminal-dim { color: #888; }
+.terminal-header { color: #ffd700; font-weight: bold; text-transform: uppercase; margin-top: 1rem; display: block; }
+.terminal-link { color: #00eaff; text-decoration: underline; cursor: pointer; }
+
+/* Boot Sequence */
+.boot-line { color: #888; font-size: 0.9rem; }
+.boot-success { color: #00ff66; }
+
+/* Scanline Effect */
+#terminal-container::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 10001;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  #terminal-container {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  #terminal-input {
+    font-size: 0.9rem;
+  }
+}

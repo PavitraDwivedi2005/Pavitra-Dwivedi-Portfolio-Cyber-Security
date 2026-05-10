@@ -8,7 +8,7 @@
   const renderer = new THREE.WebGLRenderer({ canvas, alpha:false, antialias:true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x020208, 1);
+  renderer.setClearColor(0x050505, 1);
 
   // --- Helper: create star layer ---
   function starLayer(count, size, spread, colors, opacity){
@@ -32,33 +32,30 @@
   }
 
   // Star color palettes (RGB 0-1)
-  const coolWhite  = [1, 0.97, 0.95];
-  const warmWhite  = [1, 0.92, 0.82];
-  const softBlue   = [0.55, 0.72, 1];
-  const deepBlue   = [0.3, 0.5, 1];
-  const violet     = [0.65, 0.4, 1];
-  const softPink   = [1, 0.5, 0.7];
-  const amber      = [1, 0.75, 0.3];
-  const teal       = [0.3, 0.9, 0.8];
+  const neonPink    = [1, 0, 0.8];
+  const electricBlue = [0, 0.9, 1];
+  const cyberGold    = [1, 0.85, 0];
+  const magenta      = [1, 0, 0.5];
+  const white        = [0.95, 0.95, 1];
 
   // Far stars — tiny, dim, thousands
-  const far = starLayer(4000, 0.08, 900, [coolWhite, warmWhite, softBlue], 0.55);
+  const far = starLayer(4000, 0.08, 900, [white, neonPink, electricBlue], 0.55);
   scene.add(far);
 
   // Mid stars — more colorful
-  const mid = starLayer(1500, 0.18, 600, [softBlue, deepBlue, violet, coolWhite, warmWhite], 0.7);
+  const mid = starLayer(1500, 0.18, 600, [neonPink, electricBlue, cyberGold, white], 0.7);
   scene.add(mid);
 
   // Close bright stars
-  const close = starLayer(300, 0.4, 350, [coolWhite, warmWhite, amber, teal], 0.9);
+  const close = starLayer(300, 0.4, 350, [cyberGold, neonPink, white], 0.9);
   scene.add(close);
 
   // Accent colored stars — sparse, vivid
-  const accents = starLayer(120, 0.55, 400, [violet, softPink, deepBlue, teal, amber], 0.85);
+  const accents = starLayer(120, 0.55, 400, [neonPink, electricBlue, cyberGold, magenta], 0.85);
   scene.add(accents);
 
   // Bright anchor stars — very few, large
-  const anchors = starLayer(25, 1.2, 500, [coolWhite, softBlue, violet], 0.6);
+  const anchors = starLayer(25, 1.2, 500, [cyberGold, neonPink], 0.6);
   scene.add(anchors);
 
   // --- Nebula clouds using sprite textures ---
@@ -82,14 +79,14 @@
     return sprite;
   }
 
-  // Nebula clouds — deep space colors
-  scene.add(createNebulaSprite(-120, 40, -300, 280, '60,20,120', 0.35));   // deep purple
-  scene.add(createNebulaSprite(150, -60, -350, 320, '15,40,100', 0.3));    // deep blue
-  scene.add(createNebulaSprite(80, 100, -280, 200, '100,20,60', 0.2));     // magenta
-  scene.add(createNebulaSprite(-60, -80, -250, 180, '10,60,80', 0.25));    // teal
-  scene.add(createNebulaSprite(200, 30, -400, 250, '80,30,120', 0.18));    // violet
-  scene.add(createNebulaSprite(-180, -30, -320, 220, '20,30,90', 0.22));   // navy
-  scene.add(createNebulaSprite(0, 50, -200, 300, '40,10,60', 0.12));       // subtle center haze
+  // Nebula clouds — cyber space colors
+  scene.add(createNebulaSprite(-120, 40, -300, 280, '255,0,204', 0.25));   // neon pink
+  scene.add(createNebulaSprite(150, -60, -350, 320, '0,234,255', 0.2));    // electric blue
+  scene.add(createNebulaSprite(80, 100, -280, 200, '255,215,0', 0.15));    // cyber gold
+  scene.add(createNebulaSprite(-60, -80, -250, 180, '255,0,204', 0.2));    // neon pink
+  scene.add(createNebulaSprite(200, 30, -400, 250, '0,234,255', 0.15));    // electric blue
+  scene.add(createNebulaSprite(-180, -30, -320, 220, '255,0,85', 0.15));   // magenta
+  scene.add(createNebulaSprite(0, 50, -200, 300, '255,215,0', 0.1));       // subtle gold center haze
 
   // --- Shooting stars ---
   const shootingStars = [];
@@ -122,13 +119,13 @@
     s.pos.y = (Math.random()-0.3)*200 + 50;
     s.pos.z = -100 - Math.random()*200;
     const angle = Math.PI*0.6 + Math.random()*0.8;
-    const speed = 3 + Math.random()*3;
+    const speed = 6 + Math.random()*5;
     s.vel.x = Math.cos(angle)*speed;
     s.vel.y = Math.sin(angle)*speed*-1;
     s.vel.z = (Math.random()-0.5)*0.5;
     s.mesh.visible = true;
   }
-  setInterval(()=>{ if(Math.random()>0.4) launchShootingStar(); }, 3000);
+  setInterval(()=>{ if(Math.random()>0.2) launchShootingStar(); }, 1500);
 
   camera.position.z = 120;
 

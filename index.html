@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pavitra Dwivedi — Security & SRE | Backend Developer</title>
-  <meta name="description" content="Pavitra Dwivedi is a Computer Science student specializing in Security, Site Reliability Engineering (SRE), and Backend Development.">
+  <title>Pavitra Dwivedi — Security & Backend Engineer</title>
+  <meta name="description" content="Pavitra Dwivedi is a Computer Science student specializing in Security and Backend Engineering.">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/terminal.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>*</text></svg>">
 </head>
 <body>
@@ -15,10 +16,20 @@
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
 
+  <button id="mode-toggle">[ GUI Mode ]</button>
+
+  <div id="terminal-container">
+    <div id="terminal-output"></div>
+    <div id="terminal-input-line">
+      <span class="prompt">visitor@pavitra:~$</span>
+      <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+
   <div class="page-wrapper">
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-      <a href="index.html" class="nav-logo">&lt;PD/&gt;</a>
+      <a href="index.html" class="nav-logo">root@pavitra:~#</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -35,8 +46,8 @@
     <section id="hero">
       <div class="hero-content">
         <div class="hero-badge"><span class="dot"></span> Open to Opportunities</div>
-        <h1 class="hero-name">I'm <span class="gradient">Pavitra Dwivedi</span></h1>
-        <p class="hero-role">Computer Science Student // Security & SRE // Backend Developer</p>
+        <h1 class="hero-name">I'm <span class="gradient glitch" data-text="Pavitra Dwivedi">Pavitra Dwivedi</span></h1>
+        <p class="hero-role" data-scramble>Computer Science Student // Security & Backend Engineer // Fr.</p>
         <div class="hero-typed"></div>
         <div class="hero-ctas">
           <a href="contact.html" class="btn-primary">Get In Touch &rarr;</a>
@@ -50,13 +61,13 @@
     <section id="about">
       <div class="container">
         <div class="section-header reveal">
-          <p class="section-label">// about</p>
-          <h2 class="section-title">Who I Am</h2>
+          <p class="section-label">root@pavitra:~/about$</p>
+          <h2 class="section-title" data-scramble>Who I Am</h2>
           <div class="section-line"></div>
         </div>
         <div class="about-content reveal">
-          <p>I'm a Computer Science student at UPES, Dehradun, focused on <strong>Security and Site Reliability Engineering (SRE)</strong>. I have hands-on experience in SIEM analysis, VAPT, and monitoring system behavior using performance metrics. I work with Python, Bash, and Java to build systems for log monitoring, alerting, and ransomware-resilient data recovery.</p>
-          <p>I'm experienced in working with Prometheus and Grafana to develop observability pipelines. My core interest lies in building secure, reliable, and scalable systems that can detect, withstand, and recover from failures while preserving privacy.</p>
+          <p>I'm a Computer Science student at UPES, Dehradun, focused on <strong>Security and Backend Engineering</strong>. I have hands-on experience in VAPT, SIEM analysis, and building secure backend architectures. I work with Python, Bash, and Java to build systems for secure data handling and ransomware-resilient infrastructure.</p>
+          <p>My core interest lies in building unhackable, scalable, and privacy-preserving systems. I focus on the intersection of deep security research and high-performance backend development.</p>
           <div class="about-links">
             <a href="about.html" class="btn-secondary">Full Story &rarr;</a>
           </div>
@@ -68,8 +79,8 @@
     <section id="skills">
       <div class="container">
         <div class="section-header reveal">
-          <p class="section-label">// tech_stack</p>
-          <h2 class="section-title">Skills & Technologies</h2>
+          <p class="section-label">root@pavitra:~/tech_stack$</p>
+          <h2 class="section-title" data-scramble>Skills & Technologies</h2>
           <div class="section-line"></div>
         </div>
         <div class="skills-grid reveal">
@@ -93,14 +104,13 @@
             </div>
           </div>
           <div class="skill-category">
-            <div class="skill-category-title"><span class="skill-icon">~</span> Observability & Reliability</div>
+            <div class="skill-category-title"><span class="skill-icon">~</span> Secure Backend Design</div>
             <div class="skill-tags">
-              <span class="skill-tag">Prometheus</span>
-              <span class="skill-tag">Grafana</span>
-              <span class="skill-tag">System Monitoring</span>
-              <span class="skill-tag">Alerting Concepts</span>
-              <span class="skill-tag">Metrics (Latency, Throughput, Error Rate)</span>
-              <span class="skill-tag">Logging</span>
+              <span class="skill-tag">Scalability</span>
+              <span class="skill-tag">Zero Trust</span>
+              <span class="skill-tag">System Hardening</span>
+              <span class="skill-tag">Secure APIs</span>
+              <span class="skill-tag">Encryption</span>
             </div>
           </div>
           <div class="skill-category">
@@ -136,24 +146,24 @@
     <section id="projects">
       <div class="container">
         <div class="section-header reveal">
-          <p class="section-label">// projects</p>
-          <h2 class="section-title">What I've Built</h2>
+          <p class="section-label">root@pavitra:~/projects$</p>
+          <h2 class="section-title" data-scramble>What I've Built</h2>
           <div class="section-line"></div>
         </div>
         <div class="projects-grid">
           <div class="project-card reveal">
-            <span class="project-status completed">* Completed</span>
+            <span class="project-status completed">[STATUS: SECURED]</span>
             <h3 class="project-title">API Performance & Reliability Monitoring</h3>
             <p class="project-tech">Python</p>
             <p class="project-desc">Simulated 500+ concurrent users to evaluate system behavior under load.</p>
             <ul class="project-highlights">
               <li>Monitored latency, throughput, and error rates to identify performance bottlenecks</li>
-              <li>Generated structured logs and metrics to support system observability and debugging</li>
-              <li>Analyzed performance degradation patterns under stress conditions</li>
+              <li>Developed secure API endpoints with robust authentication and validation layers</li>
+              <li>Analyzed system behavior under high-concurrency stress conditions to ensure availability</li>
             </ul>
           </div>
           <div class="project-card reveal">
-            <span class="project-status ongoing">* Ongoing</span>
+            <span class="project-status ongoing">[STATUS: COMPILING...]</span>
             <h3 class="project-title">Privacy-Preserving Scam Detection</h3>
             <p class="project-tech">Python | ML</p>
             <p class="project-desc">Designed a secure, real-time processing pipeline without storing sensitive user data.</p>
@@ -164,25 +174,25 @@
             </ul>
           </div>
           <div class="project-card reveal">
-            <span class="project-status completed">* Completed</span>
-            <h3 class="project-title">Log Monitoring & Alerting System</h3>
-            <p class="project-tech">Python | Docker | Prometheus | Grafana</p>
-            <p class="project-desc">Built a monitoring pipeline using Prometheus to scrape system metrics and visualise with Grafana dashboards.</p>
+            <span class="project-status completed">[STATUS: SECURED]</span>
+            <h3 class="project-title">Secure Microservices Gateway</h3>
+            <p class="project-tech">Java | Spring Boot | JWT</p>
+            <p class="project-desc">Built a high-performance API gateway with Zero-Trust principles and granular access control.</p>
             <ul class="project-highlights">
-              <li>Visualised CPU, memory, and request latency metrics</li>
-              <li>Configured alerting rules for threshold breaches and abnormal behavior</li>
-              <li>Simulated failures to validate alert accuracy and system observability</li>
+              <li>Implemented centralized JWT-based authentication and rate limiting</li>
+              <li>Configured automated threat detection rules for incoming traffic</li>
+              <li>Optimized gateway latency for high-throughput backend communication</li>
             </ul>
           </div>
           <div class="project-card reveal">
-            <span class="project-status completed">* Completed</span>
+            <span class="project-status completed">[STATUS: SECURED]</span>
             <h3 class="project-title">RansomSafe: Resilient Backup System</h3>
             <p class="project-tech">Python | Minikube | Restic</p>
             <p class="project-desc">Designed a backup and recovery system using snapshot-based backups triggered on file changes.</p>
             <ul class="project-highlights">
-              <li>Integrated Restic for incremental backups and utilised Minikube-based S3 object storage</li>
+              <li>Integrated Restic for incremental backups and utilized Minikube-based S3 object storage</li>
               <li>Enabled restoration of clean data states during simulated ransomware scenarios</li>
-              <li>Logged backup and recovery events to improve traceability and system observability</li>
+              <li>Logged backup and recovery events to ensure auditability and data integrity</li>
             </ul>
           </div>
         </div>
@@ -193,8 +203,8 @@
     <section id="experience">
       <div class="container">
         <div class="section-header reveal">
-          <p class="section-label">// experience</p>
-          <h2 class="section-title">Where I've Worked</h2>
+          <p class="section-label">root@pavitra:~/experience$</p>
+          <h2 class="section-title" data-scramble>Where I've Worked</h2>
           <div class="section-line"></div>
         </div>
         <div class="reveal">
@@ -231,8 +241,8 @@
     <section id="resume">
       <div class="container">
         <div class="section-header reveal">
-          <p class="section-label">// resume</p>
-          <h2 class="section-title">My Resume</h2>
+          <p class="section-label">root@pavitra:~/resume$</p>
+          <h2 class="section-title" data-scramble>My Resume</h2>
           <div class="section-line"></div>
         </div>
         <div class="resume-panel reveal">
@@ -241,7 +251,7 @@
               <span class="resume-icon">CV</span>
               <div>
                 <div style="font-weight:700;font-size:1.05rem;">Pavitra Dwivedi</div>
-                <div style="font-size:.82rem;color:var(--text-secondary);">Security & SRE // Backend Developer</div>
+                <div style="font-size:.82rem;color:var(--text-secondary);">Security & Backend Engineer</div>
               </div>
             </div>
             <a href="resume.pdf" target="_blank" class="btn-primary" download>Download PDF &darr;</a>
@@ -252,7 +262,7 @@
             <div class="resume-col">
               <div class="resume-block">
                 <h3 class="resume-block-title">Professional Summary</h3>
-                <p class="resume-text">Computer Science student focused on Security and Site Reliability Engineering (SRE), with hands-on experience in SIEM analysis, VAPT, and monitoring system behavior using performance metrics (latency, throughput, error rates). Built systems for log monitoring, alerting, and ransomware-resilient data recovery. Experienced in working with Prometheus and Grafana to develop basic observability pipelines. Interested in building secure, reliable, and scalable systems that can detect, withstand, and recover from failures.</p>
+                <p class="resume-text">Computer Science student focused on Security and Backend Engineering, with hands-on experience in VAPT, SIEM analysis, and building secure architectures. Built systems for ransomware-resilient data recovery and secure data processing pipelines. Interested in building unhackable, scalable systems that preserve privacy and withstand sophisticated threats.</p>
               </div>
 
               <div class="resume-block">
@@ -313,14 +323,13 @@
                 </div>
                 <div class="resume-entry">
                   <div class="resume-entry-header">
-                    <strong>Log Monitoring & Alerting System</strong>
-                    <span class="resume-date">Python, Docker</span>
+                    <strong>Secure API Integration Framework</strong>
+                    <span class="resume-date">Python</span>
                   </div>
-                  <div class="resume-entry-sub">Prometheus + Grafana</div>
+                  <div class="resume-entry-sub">Backend Security</div>
                   <ul class="resume-list">
-                    <li>Built a monitoring pipeline using Prometheus to scrape system metrics</li>
-                    <li>Visualized metrics using Grafana dashboards and configured alerting rules</li>
-                    <li>Simulated failures to validate alert accuracy and system observability</li>
+                    <li>Developed a secure framework for API integrations with focus on authentication and data integrity</li>
+                    <li>Implemented automated vulnerability scanning for backend endpoints</li>
                   </ul>
                 </div>
                 <div class="resume-entry">
@@ -356,7 +365,7 @@
                 <h3 class="resume-block-title">Technical Skills</h3>
                 <div class="resume-skill-row"><span class="resume-skill-label">Programming</span><span>Python, Bash, Java (OOP), C</span></div>
                 <div class="resume-skill-row"><span class="resume-skill-label">Security & Monitoring</span><span>SIEM, VAPT, OWASP Top 10, Log Analysis, Incident Response</span></div>
-                <div class="resume-skill-row"><span class="resume-skill-label">Observability & Reliability</span><span>Prometheus, Grafana, System Monitoring, Alerting, Metrics, Logging</span></div>
+                <div class="resume-skill-row"><span class="resume-skill-label">Secure Backend Design</span><span>Zero Trust, System Hardening, Secure APIs, Encryption, Scalability</span></div>
                 <div class="resume-skill-row"><span class="resume-skill-label">Cloud/DevOps</span><span>AWS (S3, IAM), Docker, Kubernetes, CI/CD, Git</span></div>
                 <div class="resume-skill-row"><span class="resume-skill-label">Systems & Backend</span><span>REST APIs, Multithreading, API Integration</span></div>
                 <div class="resume-skill-row"><span class="resume-skill-label">Databases</span><span>MySQL, MongoDB</span></div>
@@ -411,8 +420,8 @@
     <section id="blog-preview">
       <div class="container">
         <div class="section-header reveal">
-          <p class="section-label">// blog</p>
-          <h2 class="section-title">Recent Writings</h2>
+          <p class="section-label">root@pavitra:~/blog$</p>
+          <h2 class="section-title" data-scramble>Recent Writings</h2>
           <div class="section-line"></div>
         </div>
         <div class="blog-grid reveal">
@@ -445,7 +454,7 @@
     <section id="contact-cta">
       <div class="container" style="text-align:center;">
         <div class="reveal">
-          <p class="section-label">// connect</p>
+          <p class="section-label">root@pavitra:~/connect$</p>
           <h2 class="section-title" style="margin-bottom:.8rem;">Let's Work Together</h2>
           <p style="color:var(--text-secondary); max-width:520px; margin:0 auto 1.8rem; font-size:1rem;">Open to opportunities, collaborations, and interesting conversations about security and backend systems.</p>
           <div style="display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap;">
@@ -464,12 +473,14 @@
         <a href="mailto:dwivedipavitr92@gmail.com">Email</a>
         <a href="blog.html">Blog</a>
       </div>
-      <p>2026 Pavitra Dwivedi</p>
+      <p>&copy; 2026 Pavitra Dwivedi // root@pavitra:~# // Securing the backend, fr.</p>
     </footer>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="js/three-bg.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/terminal.js"></script>
 </body>
 </html>

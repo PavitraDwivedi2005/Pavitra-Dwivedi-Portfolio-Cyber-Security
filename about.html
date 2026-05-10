@@ -1,58 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>About — Pavitra Dwivedi</title>
-  <meta name="description" content="Learn about Pavitra Dwivedi's journey in computer science, cybersecurity, backend development, and career vision.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About // Security & Backend Engineering // Pavitra Dwivedi</title>
+  <meta name="description" content="Pavitra Dwivedi — Backend Engineer & Security Specialist. Building secure, unhackable architectures.">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/terminal.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>*</text></svg>">
 </head>
 <body>
   <canvas id="space-bg"></canvas>
-  <div class="cursor-dot"></div><div class="cursor-ring"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <button id="mode-toggle">[ GUI Mode ]</button>
+
+  <div id="terminal-container">
+    <div id="terminal-output"></div>
+    <div id="terminal-input-line">
+      <span class="prompt">visitor@pavitra:~$</span>
+      <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+
   <div class="page-wrapper">
-    <nav class="navbar"><a href="index.html" class="nav-logo">&lt;PD/&gt;</a>
-      <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="index.html#skills">Skills</a></li><li><a href="index.html#projects">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html" class="nav-cta">Hire Me</a></li></ul>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">root@pavitra:~#</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html" class="nav-cta">Connect</a></li>
+      </ul>
       <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
-    <div class="page-hero"><p class="section-label">// about</p><h1>The Story Behind<br>the <span style="background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Code</span></h1><p>What drives me, where I've been, and where I'm heading.</p></div>
+    <div class="page-hero">
+      <p class="section-label">root@pavitra:~/about$</p>
+      <h1 class="cyber-heading" data-text="Decoding The Journey">Decoding The Journey</h1>
+      <p style="color:var(--accent-1); font-family:var(--font-mono);">[Initializing connection... Secured]</p>
+    </div>
 
-    <section><div class="about-full container">
+    <div class="interactive-timeline">
+      <!-- 01: Who I Am -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">01 // IDENTITY</span>
+          <h2 class="timeline-title" data-text="The Architect">The Architect</h2>
+          <p class="timeline-text">
+            I'm <strong>Pavitra Dwivedi</strong>, a Backend and Security Engineer at UPES, Dehradun. I don't just write code; I architect digital fortifications. My mission is to build backend systems that are as resilient as they are scalable.
+          </p>
+        </div>
+      </div>
+
+      <!-- 02: Core Focus -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">02 // CORE_STACK</span>
+          <h2 class="timeline-title" data-text="The Arsenal">The Arsenal</h2>
+          <p class="timeline-text">
+            My toolkit is built for efficiency and security. I specialize in <strong>Python, Java, and Bash</strong> to develop high-performance backends and automated security workflows. From Zero-Trust API design to deep packet inspection, I focus on the layers where most systems fail.
+          </p>
+        </div>
+      </div>
+
+      <!-- 03: Security Experience -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">03 // FIELD_OPS</span>
+          <h2 class="timeline-title" data-text="Breaching & Securing">Breaching & Securing</h2>
+          <p class="timeline-text">
+            During my time at <strong>INFERA</strong>, I operated as a Cybersecurity Intern, performing deep VAPT assessments. I didn't just find vulnerabilities; I neutralized them, identifying 15+ critical OWASP flaws and hardening SOC response strategies.
+          </p>
+        </div>
+      </div>
+
+      <!-- 04: Backend & Data -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">04 // DATA_STREAMS</span>
+          <h2 class="timeline-title" data-text="Fortified Pipelines">Fortified Pipelines</h2>
+          <p class="timeline-text">
+            At <strong>IQSec Labs</strong>, I pivoted to the plumbing of the internet. I engineered secure data pipelines for sensitive information, automating workflows that slashed manual processing by 70% while maintaining absolute data integrity.
+          </p>
+        </div>
+      </div>
+
+      <!-- 05: Current Research -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">05 // R&D</span>
+          <h2 class="timeline-title" data-text="Privacy First">Privacy First</h2>
+          <p class="timeline-text">
+            Currently, I'm deep in R&D, building a <strong>Real-Time Scam Detection System</strong> that operates without ever storing user data. My research in Digital Forensics is peer-reviewed and published, pushing the boundaries of what "private" really means.
+          </p>
+        </div>
+      </div>
+
+      <!-- 06: Vision -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <span class="timeline-date">06 // ENDGAME</span>
+          <h2 class="timeline-title" data-text="The Vision">The Vision</h2>
+          <p class="timeline-text">
+            I'm here to solve the hard problems at the intersection of <strong>Security and Backend Architecture</strong>. My goal is to build the unhackable infrastructure of tomorrow. No cap.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section class="container" style="text-align:center; padding-bottom:5rem;">
       <div class="reveal">
-        <h2>Who I Am</h2>
-        <p>I'm <strong>Pavitra Dwivedi</strong>, a Computer Science undergraduate at the University of Petroleum and Energy Studies, Dehradun. My focus is on <strong>Security and Site Reliability Engineering (SRE)</strong>. I work primarily with Python, Bash, and Java, with a growing specialisation in building secure, reliable, and scalable systems.</p>
-        <p>What drives me isn't just writing code &mdash; it's solving real-world problems. Whether it's designing a scam detection system that never stores voice data, building ransomware-resilient backup infrastructure, or developing observability pipelines, I believe technology should protect and empower users.</p>
+        <h3 class="cyber-heading" data-text="Let's Build">Let's Build</h3>
+        <p style="color:var(--text-secondary); margin-bottom:2rem;">Ready to secure your next big project?</p>
+        <a href="contact.html" class="btn-primary">Initiate Contact &rarr;</a>
       </div>
-      <div class="reveal">
-        <h2>My Journey</h2>
-        <p>My fascination with technology started with curiosity about how systems break and how to keep them running. That curiosity led me through two internships that shaped my technical direction:</p>
-        <p>At <strong>INFERA, Noida</strong>, as a Cybersecurity Intern, I conducted VAPT assessments on web applications, identifying 15+ vulnerabilities including OWASP Top 10 issues, monitored and analyzed SIEM logs to detect anomalies, and developed SOC runbooks and incident response workflows.</p>
-        <p>At <strong>IQSec Labs</strong>, as a Security & Data Engineering Intern, I built and maintained data pipelines for sensitive datasets, automated data processing reducing manual effort by 60-70%, and improved system reliability by optimizing preprocessing workflows.</p>
-        <p>I also co-authored a peer-reviewed research paper on cybersecurity and digital forensics, presented at an international conference and published in proceedings (ISBN: 978-93-342-1179-5).</p>
-      </div>
-      <div class="reveal">
-        <h2>What I'm Building Now</h2>
-        <p>Currently, I'm working on several projects focused on security and observability. I'm building a <strong>Privacy-Preserving Real-Time Scam Detection System</strong> that analyses voice calls in real-time without storing raw data, with a copyright filing in progress.</p>
-        <p>I'm also building an <strong>API Performance & Reliability Monitoring System</strong> and a <strong>Log Monitoring & Alerting System</strong> using Prometheus and Grafana, deepening my skills in Kubernetes, observability, and building fault-tolerant backend infrastructure.</p>
-      </div>
-      <div class="reveal">
-        <h2>Vision</h2>
-        <p>I aspire to work at the intersection of <strong>Security Engineering</strong> and <strong>Site Reliability Engineering (SRE)</strong>. My goal is to join a team building secure, observable systems that serve millions and can withstand and recover from failures efficiently.</p>
-      </div>
-      <div style="text-align:center;margin-top:2.5rem;" class="reveal">
-        <a href="contact.html" class="btn-primary">Let's Work Together &rarr;</a>
-        
-      </div>
-    </div></section>
+    </section>
 
     <footer class="footer">
-      <div class="footer-links"><a href="https://linkedin.com/in/pavitra-dwivedi" target="_blank">LinkedIn</a><a href="https://github.com/PavitraDwivedi2005" target="_blank">GitHub</a><a href="mailto:dwivedipavitr92@gmail.com">Email</a><a href="blog.html">Blog</a></div>
-      <p>2026 Pavitra Dwivedi</p>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/pavitra-dwivedi" target="_blank">LinkedIn</a>
+        <a href="https://github.com/PavitraDwivedi2005" target="_blank">GitHub</a>
+        <a href="mailto:dwivedipavitr92@gmail.com">Email</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <p>&copy; 2026 Pavitra Dwivedi // root@pavitra:~#</p>
     </footer>
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="js/three-bg.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/terminal.js"></script>
 </body>
 </html>

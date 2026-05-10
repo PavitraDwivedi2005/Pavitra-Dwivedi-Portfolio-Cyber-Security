@@ -56,7 +56,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   const revealObs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        
+        // Scramble any data-scramble elements within the revealed section
+        const scramblers = e.target.querySelectorAll('[data-scramble]');
+        scramblers.forEach(s => {
+          if(!s.dataset.scrambled) {
+            scrambleText(s);
+            s.dataset.scrambled = "true";
+          }
+        });
+        
+        revealObs.unobserve(e.target);
+      }
+    });
   },{threshold:0.15});
   reveals.forEach(el=>revealObs.observe(el));
 
@@ -125,5 +140,65 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.style.background = 'linear-gradient(135deg, #00ff88, #00d4ff)';
       setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';form.reset();},3000);
     });
+  }
+
+  // --- INTERACTIVE ABOUT PAGE LOGIC ---
+  
+  // 1. Timeline Scroll Reveal
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  if (timelineItems.length > 0) {
+    const timelineObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const content = entry.target.querySelector('.timeline-content');
+          if (content) content.classList.add('show-scroll');
+          
+          // Trigger scramble on titles inside
+          const scramblers = entry.target.querySelectorAll('[data-scramble]');
+          scramblers.forEach(s => {
+            if(!s.dataset.scrambled) {
+              scrambleText(s);
+              s.dataset.scrambled = "true";
+            }
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    timelineItems.forEach(item => {
+      const content = item.querySelector('.timeline-content');
+      if (content) content.classList.add('hidden-scroll');
+      timelineObs.observe(item);
+    });
+  }
+
+  // 2. Text Scramble Effect
+  function scrambleText(element) {
+    const originalText = element.getAttribute('data-text') || element.innerText;
+    const chars = '!<>-_\\/[]{}—=+*^?#________';
+    let iteration = 0;
+    
+    const interval = setInterval(() => {
+      element.innerText = originalText.split("")
+        .map((char, index) => {
+          if (index < iteration) {
+            return originalText[index];
+          }
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join("");
+      
+      if (iteration >= originalText.length) {
+        clearInterval(interval);
+      }
+      
+      iteration += 1 / 3;
+    }, 30);
+  }
+
+  // Scramble initial hero title on About page
+  const cyberHero = document.querySelector('.cyber-heading');
+  if (cyberHero) {
+    setTimeout(() => scrambleText(cyberHero), 500);
   }
 });
